@@ -4,11 +4,13 @@ import { THEMES } from '../themes/palettes'
 
 interface DesignStore extends DesignParams {
   svgContent: string
+  panelCollapsed: boolean
   setParam: <K extends keyof DesignParams>(key: K, value: DesignParams[K]) => void
   setPattern: (p: PatternType) => void
   setTheme: (id: string) => void
   randomSeed: () => void
   setSvgContent: (s: string) => void
+  togglePanel: () => void
   exportSvg: () => void
   exportPng: () => void
 }
@@ -26,6 +28,7 @@ export const useDesignStore = create<DesignStore>((set, get) => ({
   width: 800,
   height: 1000,
   svgContent: '',
+  panelCollapsed: window.innerWidth < 768,
   setParam: (key, value) => set({ [key]: value } as any),
   setPattern: (p) => set({ pattern: p }),
   setTheme: (id) => {
@@ -34,6 +37,7 @@ export const useDesignStore = create<DesignStore>((set, get) => ({
   },
   randomSeed: () => set({ seed: Math.floor(Math.random() * 99999) }),
   setSvgContent: (s) => set({ svgContent: s }),
+  togglePanel: () => set(s => ({ panelCollapsed: !s.panelCollapsed })),
   exportSvg: () => {
     const { svgContent } = get()
     const blob = new Blob([svgContent], { type: 'image/svg+xml' })

@@ -14,8 +14,17 @@ export default function Sidebar() {
   const store = useDesignStore()
 
   return (
-    <div className="w-72 bg-gray-900 border-l border-gray-700 p-4 overflow-y-auto flex flex-col gap-4">
-      <h2 className="text-lg font-bold">🎨 SVG 海报设计器</h2>
+    <div className="w-72 h-full bg-gray-900 border-l border-gray-700 p-4 overflow-y-auto flex flex-col gap-4">
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-bold">🎨 SVG 海报设计器</h2>
+        <button
+          onClick={() => store.togglePanel()}
+          className="w-8 h-8 flex items-center justify-center rounded hover:bg-gray-700 text-gray-400 hover:text-white transition-colors"
+          aria-label="收起面板"
+        >
+          ✕
+        </button>
+      </div>
 
       {/* Pattern */}
       <div>

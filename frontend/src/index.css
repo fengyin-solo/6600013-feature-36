@@ -1,3 +1,7 @@
 @tailwind base; @tailwind components; @tailwind utilities;
 body { margin: 0; background: #030712; color: white; }
-#root { height: 100vh; display: flex; }
+#root { height: 100vh; height: 100dvh; display: flex; }
+
+@media (max-width: 767px) {
+  input[type="range"] { height: 28px; }
+}
